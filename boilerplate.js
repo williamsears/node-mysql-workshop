@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   database: 'addressbook'
 });
 
-connection.query("select Account.id as ActId, AddressBook.accountId as AdsId, Account.email as AccountEmail, AddressBook.name as AddressBookName FROM Account left join AddressBook on Account.id=AddressBook.accountId", function(err, rows, fields) {
+connection.query("select * from Account join AddressBook on AddressBook.accountId=Account.id join Entry on Entry.addressBookId=AddressBook.id;", function(err, rows, fields) {
   // In this callback, rows will be all the rows of the query, in a regular array of regular objects
   // fields is not used very often, but it will contain a listing of the columns with some metadata
   if (err) throw err;
