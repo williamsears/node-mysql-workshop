@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   database: 'addressbook'
 });
 
-connection.query("select Account.id as ActId, AddressBook.accountId as AdsId, Account.email as AccountEmail, AddressBook.name as AddressBookName FROM Account join AddressBook on Account.id=AddressBook.accountId", function(err, rows, fields) {
+connection.query("select Account.id as ActId, AddressBook.accountId as AdsId, Account.email as AccountEmail, AddressBook.name as AddressBookName FROM Account left join AddressBook on Account.id=AddressBook.accountId", function(err, rows, fields) {
   // In this callback, rows will be all the rows of the query, in a regular array of regular objects
   // fields is not used very often, but it will contain a listing of the columns with some metadata
   if (err) throw err;
@@ -39,7 +39,12 @@ connection.query("select Account.id as ActId, AddressBook.accountId as AdsId, Ac
   for (var k = 0; k < user.length; k++) {
     console.log("-------------");
     console.log(user[k].Email)
+    if (user[k].arr[0] === null) {
+      console.log("---No Address Books---")
+    } else {
+    
     console.log(user[k].arr.join(", "));
+    }
   }
   // This code will output lines like:
   // #1: john@smith.com
