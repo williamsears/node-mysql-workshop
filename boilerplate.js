@@ -12,8 +12,10 @@ connection.query("SELECT Account.id AS actId, Account.email AS actEmail, Address
  if(err) throw err;
  console.log(rows);
 
- var user = [];
- for (var i = 0; )
+ forEach(function(row){
+  
+ });
+
  
 
  });
